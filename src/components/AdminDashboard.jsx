@@ -93,7 +93,7 @@ const AdminDashboard = () => {
                     <label htmlFor="description">Description:</label>
                     <input required onChange={(e) => handleChange(e)} value={details.description} className='border border-zinc-600 rounded-md mb-5 outline-0 mt-1 p-2 ' type="text" id='description' placeholder='Enter description of Task' name='description' />
                 </div>
-                <button className='border border-green-400 rounded-md p-2 font-semibold bg-green-200 text-black cursor-ponter'>Login</button>
+                <button className='border border-green-400 rounded-md p-2 font-semibold bg-green-200 text-black cursor-ponter'>Create Task</button>
             </form>
             <div>
                 <h2 className='text-2xl font-bold mb-3'>All Tasks</h2>
