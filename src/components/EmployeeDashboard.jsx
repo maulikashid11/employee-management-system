@@ -11,7 +11,7 @@ const EmployeeDashboard = () => {
     const navigate = useNavigate()
     useEffect(() => {
         if (!loggedIn) {
-            navigate('/login')
+            navigate('/user/login')
         }
         localStorage.setItem('employees', JSON.stringify(employees))
     }, [])

@@ -12,7 +12,7 @@ const Header = () => {
                 <NavLink className={({ isActive }) => isActive ? 'text-white mx-2' : 'text-zinc-400 mx-2'} to="/contact">Contact Us</NavLink>
             </div>
             <div>
-                <Link className='mx-2 border-1 font-semibold border-zinc-700 align-middle text-sm rounded-lg p-2 ' to="/login">Login</Link>
+                <Link className='mx-2 border-1 font-semibold border-zinc-700 align-middle text-sm rounded-lg p-2 ' to="/user/login">Login</Link>
             </div>
         </header>
     )

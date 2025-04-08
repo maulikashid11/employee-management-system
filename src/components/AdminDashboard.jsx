@@ -14,7 +14,8 @@ const AdminDashboard = () => {
     const [employees, setEmployees, admin, loggedIn, setLoggedIn] = useContext(EmployeeContext)
     useEffect(() => {
         if (!loggedIn) {
-            navigate('/login')
+            navigate('/user/login')
+            return
         }
         localStorage.setItem('employees', JSON.stringify(employees))
     }, [])

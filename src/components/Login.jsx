@@ -15,7 +15,7 @@ const Login = () => {
         if (loggedIn !== 'admin') {
             let employee = employees.find((employee) => employee.name === loggedIn)
         } else {
-            navigate(`/admin`)
+            navigate("/dashboard/admin")
         }
     }, [])
 
@@ -26,12 +26,12 @@ const Login = () => {
             if (employee.email === details.email && employee.password == details.password && employee.id !== 12345) {
                 setLoggedIn(employee.name)
                 localStorage.setItem('loggedIn', JSON.stringify(employee.name))
-                navigate(`/${employee.name}`)
+                navigate(`/employee/${employee.name}`)
             }
         } else if (details.email === admin.email && details.password === admin.password) {
             setLoggedIn('admin')
             localStorage.setItem('loggedIn', JSON.stringify('admin'))
-            navigate(`/admin`)
+            navigate("/dashboard/admin")
         } else {
             setError('Something went wrong')
             setDetails({

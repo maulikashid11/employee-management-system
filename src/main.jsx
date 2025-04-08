@@ -39,15 +39,15 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: '/login',
+    path: '/user/login',
     element: <Login />
   },
   {
-    path: '/:employeename',
+    path: '/employee/:employeename',
     element: <EmployeeDashboard />
   },
   {
-    path: '/admin',
+    path: '/dashboard/admin',
     element: <AdminDashboard />
   },
 
