@@ -18,6 +18,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: < App />,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
@@ -43,7 +44,6 @@ const router = createBrowserRouter([
   },
   {
     path: '/:employeename',
-    errorElement: <Error />,
     element: <EmployeeDashboard />
   },
   {
