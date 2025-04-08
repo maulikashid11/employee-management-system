@@ -12,6 +12,8 @@ import EmployeeDashboard from './components/EmployeeDashboard'
 import AdminDashboard from './components/AdminDashboard'
 import Error from './components/Error'
 import App from './App.jsx'
+import AdminHome from './components/AdminHome.jsx'
+import TasksOfEmployee from './components/TasksOfEmployee.jsx'
 
 
 const router = createBrowserRouter([
@@ -48,7 +50,17 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard/admin',
-    element: <AdminDashboard />
+    element: <AdminHome />,
+    children: [
+      {
+        path: '/dashboard/admin/',
+        element: <AdminDashboard />
+      },
+      {
+        path: '/dashboard/admin/:employeename',
+        element: <TasksOfEmployee />
+      }
+    ]
   },
 
 ])

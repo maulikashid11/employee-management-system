@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { EmployeeContext } from '../contexts/EmployeeData'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const AdminDashboard = () => {
-    const navigate = useNavigate()
+    const [employees, setEmployees, admin, loggedIn, setLoggedIn] = useContext(EmployeeContext)
     const [details, setDetails] = useState({
         name: '',
         email: '',
@@ -11,21 +11,7 @@ const AdminDashboard = () => {
         title: '',
         description: '',
     })
-    const [employees, setEmployees, admin, loggedIn, setLoggedIn] = useContext(EmployeeContext)
-    useEffect(() => {
-        if (!loggedIn) {
-            navigate('/user/login')
-            return
-        }
-        localStorage.setItem('employees', JSON.stringify(employees))
-    }, [])
-    const logout = (e) => {
-        if (loggedIn === 'admin') {
-            setLoggedIn(null)
-            localStorage.setItem('loggedIn', null)
-            navigate('/')
-        }
-    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const { name, email, password, title, description } = details
@@ -67,11 +53,7 @@ const AdminDashboard = () => {
         setDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
     return (
-        <main className='w-full min-h-screen p-5 bg-zinc-900 text-white'>
-            <div className='mb-10 flex items-center justify-between'>
-                <h1 className=' text-3xl font-bold'><span className='font-normal'>Hello</span>, Admin 👋</h1>
-                <button onClick={(e) => { logout(e) }} className='cursor-pointer bg-red-500 font-bold p-2 text-xl rounded-md'>Logout</button>
-            </div>
+        <>
             <form action="" onSubmit={(e) => { handleSubmit(e) }} className='border-1 border-green-700 flex flex-col justify-center rounded-lg p-5 md:w-[60%] mx-auto'>
                 <h2 className='text-2xl font-bold mb-3'>Create Task</h2>
                 <div className='flex flex-col'>
@@ -107,17 +89,18 @@ const AdminDashboard = () => {
                 </div>
                 {
                     employees.map((employee) => {
-                        return <div key={employee.id} className="headings flex items-center justify-between border border-zinc-400 p-2 rounded-md mb-3">
+                        return <Link to={`/dashboard/admin/${employee.name}`} state={employee} key={employee.id} className="headings flex items-center justify-between border border-zinc-400 p-2 rounded-md mb-3">
                             <p className='text-center border-r-1 border-zinc-400 w-full'>{employee.name}</p>
                             <p className='text-center text-blue-500 border-r-1 border-zinc-400 w-full'>{employee.tasksNumber.newTask}</p>
                             <p className='text-center text-green-500 border-r-1 border-zinc-400 w-full'>{employee.tasksNumber.completedTask}</p>
                             <p className='text-center text-yellow-500 border-r-1 border-zinc-400 w-full'>{employee.tasksNumber.pendingTask}</p>
                             <p className='text-center text-red-500 w-full'>{employee.tasksNumber.failedTask}</p>
-                        </div>
+                        </Link>
                     })
                 }
             </div>
-        </main >
+        </>
+
     )
 }
 
